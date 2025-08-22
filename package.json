@@ -1,0 +1,25 @@
+{
+  "name": "daily-news-automation",
+  "version": "1.0.0",
+  "description": "Automated daily news fetcher with Bloomberg-style reports delivered via email",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "fetch-news": "node src/fetchNews.js",
+    "generate-report": "node src/generateReport.js",
+    "send-email": "node src/sendEmail.js",
+    "daily-news": "node src/dailyNews.js",
+    "test": "node src/testRun.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.9.7",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "fs-extra": "^11.2.0",
+    "date-fns": "^3.0.0"
+  }
+}

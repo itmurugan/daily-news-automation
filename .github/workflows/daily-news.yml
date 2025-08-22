@@ -1,0 +1,60 @@
+name: Daily News Automation
+
+on:
+  schedule:
+    # Run every day at 7:00 AM UTC (adjust for your timezone)
+    - cron: '0 7 * * *'
+  workflow_dispatch: # Allow manual trigger
+    inputs:
+      test_run:
+        description: 'Run as test (no email)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  fetch-and-send-news:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run Daily News Automation
+      env:
+        EMAIL_SERVICE: gmail
+        EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        EMAIL_TO: itmurugan@gmail.com
+        EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        TEST_RUN: ${{ github.event.inputs.test_run || 'false' }}
+      run: |
+        echo "Starting Daily News Automation..."
+        if [ "$TEST_RUN" = "true" ]; then
+          echo "Running in test mode - no email will be sent"
+        fi
+        npm run daily-news
+        
+    - name: Upload report artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: daily-news-report-${{ github.run_number }}
+        path: reports/
+        retention-days: 30
+        
+    - name: Notify on failure
+      if: failure()
+      run: |
+        echo "Daily News Automation failed at $(date)"
+        echo "Check the logs for more details"
+        exit 1
