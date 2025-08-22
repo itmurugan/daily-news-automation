@@ -1,6 +1,6 @@
 import { fetchNewsFromSources } from './fetchNews.js';
 import { generateHTMLReport } from './generateReport.js';
-import { sendEmailReport } from './sendEmail.js';
+import { sendEmailReportOAuth } from './sendEmailOAuth.js';
 import fs from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -56,7 +56,7 @@ export async function runDailyNewsAutomation() {
       emailResult = { success: 'skipped' };
     } else {
       console.log('\n📧 Sending email to itmurugan@gmail.com...');
-      emailResult = await sendEmailReport(htmlReport);
+      emailResult = await sendEmailReportOAuth(htmlReport);
       
       if (emailResult.success) {
         console.log('✅ Email sent successfully!');

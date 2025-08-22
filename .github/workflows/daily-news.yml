@@ -35,6 +35,11 @@ jobs:
         EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
         EMAIL_TO: itmurugan@gmail.com
         EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        # OAuth2 Credentials (Modern Security - Recommended)
+        GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+        GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+        GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
+        # Fallback: Basic Auth
         EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
         TEST_RUN: ${{ github.event.inputs.test_run || 'false' }}
       run: |
