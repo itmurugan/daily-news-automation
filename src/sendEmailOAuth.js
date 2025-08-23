@@ -37,7 +37,7 @@ export async function sendEmailReportOAuth(htmlContent, subject = null) {
     const accessToken = await getAccessToken(oauth2Client);
     
     // Create transporter with OAuth2
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         type: 'OAuth2',
@@ -83,7 +83,7 @@ export async function sendEmailReportOAuth(htmlContent, subject = null) {
 // Fallback function using basic authentication
 async function fallbackToBasicAuth(htmlContent, subject) {
   try {
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: config.email.auth.user,
