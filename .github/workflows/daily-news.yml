@@ -33,7 +33,7 @@ jobs:
       env:
         EMAIL_SERVICE: gmail
         EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-        EMAIL_TO: itmurugan@gmail.com
+        EMAIL_TO: ${{ secrets.EMAIL_TO }}
         EMAIL_USER: ${{ secrets.EMAIL_USER }}
         # OAuth2 Credentials (Modern Security - Recommended)
         GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}

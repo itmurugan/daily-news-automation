@@ -1,22 +1,52 @@
-# Daily News Automation
+# 🚀 Daily Business News Automation
 
-Automated daily news fetcher that generates professional Bloomberg-style HTML reports and delivers them to your inbox every morning.
+> **AI-Powered Bloomberg-Style Business News Digest Delivered to Your Inbox**
 
-## Features
+[![Node.js](https://img.shields.io/badge/Node.js-20+-green.svg)](https://nodejs.org/)
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-automated-blue.svg)](https://github.com/features/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- 📰 Fetches news from multiple sources (Reuters, TechCrunch, Hacker News, BBC, CNN)
-- 🎨 Generates beautiful HTML reports with artifact-style formatting
-- 📧 Automatically emails reports to your inbox
-- 🔄 Runs daily via GitHub Actions
-- 📋 Categorizes news by topic
-- 📈 Includes news statistics and summaries
+Transform your morning routine with professionally curated business news from USA 🇺🇸, Hong Kong 🇭🇰, Singapore 🇸🇬, and India 🇮🇳 markets - delivered automatically to your inbox every day.
+
+## ✨ Key Features
+
+- 🤖 **AI-Powered Curation**: Bloomberg-news-fetcher agent intelligently selects relevant business content
+- 📊 **Professional Formatting**: Bloomberg-style HTML reports with market categorization  
+- 🌍 **Multi-Regional Coverage**: 46+ articles daily from 6 financial news sources
+- ⚡ **Fully Automated**: GitHub Actions scheduling with zero maintenance
+- 🔒 **Enterprise Security**: Encrypted secrets and secure authentication
+- 📱 **Mobile Responsive**: Optimized for reading on any device
+
+## 🚀 Quick Start
+
+### Option 1: Personal Use (5 minutes)
+```bash
+git clone https://github.com/YOUR-USERNAME/daily-news-automation.git
+cd daily-news-automation
+npm install
+cp .env.example .env
+# Edit .env with your Gmail credentials (see SETUP.md)
+npm run daily-news
+```
+
+### Option 2: Automated Daily Delivery
+1. Fork this repository to your GitHub account
+2. Update `.env.example` with your email credentials
+3. Set GitHub secrets with your email configuration
+4. Enable GitHub Actions
+5. Receive daily news automatically!
+
+**📖 Detailed Setup Guide: [SETUP.md](./SETUP.md)**
+
+## 🚨 Important: Configure Your Email
+
+**⚠️ CHANGE EMAIL ADDRESSES TO AVOID SPAM**
+
+Before running, update these files:
+- **`.env`** - Replace `your-email@gmail.com` with your actual email
+- **GitHub Secrets** - Set `EMAIL_TO` to your email address
 
 ## Setup Instructions
-
-### 1. Repository Setup
-
-1. Fork or clone this repository
-2. Copy `.env.example` to `.env` and configure your settings
 
 ### 2. Email Configuration
 
