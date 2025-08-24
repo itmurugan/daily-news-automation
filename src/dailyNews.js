@@ -43,7 +43,7 @@ export async function runDailyNewsAutomation() {
     const reportsDir = path.join(__dirname, '..', 'reports');
     await fs.ensureDir(reportsDir);
     
-    const reportFilename = `news-report-${new Date().toISOString().split('T')[0]}.html`;
+    const reportFilename = `market-briefing-${new Date().toISOString().split('T')[0]}.html`;
     const reportPath = path.join(reportsDir, reportFilename);
     await fs.writeFile(reportPath, htmlReport);
     console.log(`✅ Report saved locally: ${reportPath}`);

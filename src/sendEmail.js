@@ -20,10 +20,10 @@ export async function sendEmailReport(htmlContent, subject = null) {
   const mailOptions = {
     from: config.email.from,
     to: config.email.to,
-    subject: subject || `📰 Daily News Digest - ${today}`,
+    subject: subject || `📈 Daily Market Briefing - ${today}`,
     html: htmlContent,
     attachments: [{
-      filename: `news-digest-${new Date().toISOString().split('T')[0]}.html`,
+      filename: `market-briefing-${new Date().toISOString().split('T')[0]}.html`,
       content: htmlContent
     }]
   };

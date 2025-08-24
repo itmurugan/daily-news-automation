@@ -2,6 +2,37 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { config } from './config.js';
 
+// Filter function to ensure content is financial/market related
+function isFinancialContent(title, description) {
+  const text = `${title} ${description}`.toLowerCase();
+  
+  // Keywords that indicate financial content
+  const financialKeywords = [
+    'stock', 'share', 'market', 'trading', 'investor', 'earnings', 'revenue',
+    'profit', 'loss', 'ipo', 'acquisition', 'merger', 'deal', 'billion', 'million',
+    'nasdaq', 's&p', 'dow', 'index', 'fed', 'inflation', 'gdp', 'economic',
+    'bank', 'finance', 'equity', 'bond', 'yield', 'rate', 'growth', 'quarter',
+    'fiscal', 'valuation', 'dividend', 'portfolio', 'hedge', 'fund', 'capital',
+    'exchange', 'sec', 'regulatory', 'compliance', 'forecast', 'analyst',
+    'upgrade', 'downgrade', 'target price', 'bull', 'bear', 'volatility'
+  ];
+  
+  // Keywords to exclude (non-financial content)
+  const excludeKeywords = [
+    'crime', 'accident', 'weather', 'celebrity', 'entertainment', 'sports',
+    'recipe', 'fashion', 'lifestyle', 'travel', 'personal', 'dating',
+    'gossip', 'viral', 'meme', 'tiktok', 'instagram', 'twitter drama'
+  ];
+  
+  // Check if content contains financial keywords
+  const hasFinancialContent = financialKeywords.some(keyword => text.includes(keyword));
+  
+  // Check if content should be excluded
+  const shouldExclude = excludeKeywords.some(keyword => text.includes(keyword));
+  
+  return hasFinancialContent && !shouldExclude;
+}
+
 export async function fetchNewsFromSources() {
   const allNews = [];
   const errors = [];
@@ -51,16 +82,22 @@ async function fetchMarketWatchNews() {
     const $ = cheerio.load(response.data, { xmlMode: true });
     const articles = [];
     
-    $('item').slice(0, 8).each((_, elem) => {
-      articles.push({
-        title: $(elem).find('title').text(),
-        description: $(elem).find('description').text().replace(/<[^>]*>/g, '').slice(0, 200),
-        url: $(elem).find('link').text(),
-        source: 'MarketWatch',
-        category: 'US Markets',
-        publishedAt: $(elem).find('pubDate').text(),
-        imageUrl: null
-      });
+    $('item').slice(0, 10).each((_, elem) => {
+      const title = $(elem).find('title').text();
+      const description = $(elem).find('description').text().replace(/<[^>]*>/g, '');
+      
+      // Filter for stock market and business content only
+      if (isFinancialContent(title, description)) {
+        articles.push({
+          title: title,
+          description: description.slice(0, 200),
+          url: $(elem).find('link').text(),
+          source: 'MarketWatch',
+          category: 'US Markets',
+          publishedAt: $(elem).find('pubDate').text(),
+          imageUrl: null
+        });
+      }
     });
     
     return articles;
@@ -79,16 +116,21 @@ async function fetchYahooFinanceNews() {
     const $ = cheerio.load(response.data, { xmlMode: true });
     const articles = [];
     
-    $('item').slice(0, 8).each((_, elem) => {
-      articles.push({
-        title: $(elem).find('title').text(),
-        description: $(elem).find('description').text().replace(/<[^>]*>/g, '').slice(0, 200),
-        url: $(elem).find('link').text(),
-        source: 'Yahoo Finance',
-        category: 'US Markets',
-        publishedAt: $(elem).find('pubDate').text(),
-        imageUrl: null
-      });
+    $('item').slice(0, 10).each((_, elem) => {
+      const title = $(elem).find('title').text();
+      const description = $(elem).find('description').text().replace(/<[^>]*>/g, '');
+      
+      if (isFinancialContent(title, description)) {
+        articles.push({
+          title: title,
+          description: description.slice(0, 200),
+          url: $(elem).find('link').text(),
+          source: 'Yahoo Finance',
+          category: 'US Markets',
+          publishedAt: $(elem).find('pubDate').text(),
+          imageUrl: null
+        });
+      }
     });
     
     return articles;
@@ -107,16 +149,21 @@ async function fetchBloombergNews() {
     const $ = cheerio.load(response.data, { xmlMode: true });
     const articles = [];
     
-    $('item').slice(0, 10).each((_, elem) => {
-      articles.push({
-        title: $(elem).find('title').text(),
-        description: $(elem).find('description').text().replace(/<[^>]*>/g, '').slice(0, 200),
-        url: $(elem).find('link').text(),
-        source: 'Bloomberg',
-        category: 'Global Markets',
-        publishedAt: $(elem).find('pubDate').text(),
-        imageUrl: null
-      });
+    $('item').slice(0, 12).each((_, elem) => {
+      const title = $(elem).find('title').text();
+      const description = $(elem).find('description').text().replace(/<[^>]*>/g, '');
+      
+      if (isFinancialContent(title, description)) {
+        articles.push({
+          title: title,
+          description: description.slice(0, 200),
+          url: $(elem).find('link').text(),
+          source: 'Bloomberg',
+          category: 'Global Markets',
+          publishedAt: $(elem).find('pubDate').text(),
+          imageUrl: null
+        });
+      }
     });
     
     return articles;
@@ -135,16 +182,21 @@ async function fetchReutersBusinessNews() {
     const $ = cheerio.load(response.data, { xmlMode: true });
     const articles = [];
     
-    $('item').slice(0, 8).each((_, elem) => {
-      articles.push({
-        title: $(elem).find('title').text(),
-        description: $(elem).find('description').text().replace(/<[^>]*>/g, '').slice(0, 200),
-        url: $(elem).find('link').text(),
-        source: 'Reuters Business',
-        category: 'Global Business',
-        publishedAt: $(elem).find('pubDate').text(),
-        imageUrl: null
-      });
+    $('item').slice(0, 10).each((_, elem) => {
+      const title = $(elem).find('title').text();
+      const description = $(elem).find('description').text().replace(/<[^>]*>/g, '');
+      
+      if (isFinancialContent(title, description)) {
+        articles.push({
+          title: title,
+          description: description.slice(0, 200),
+          url: $(elem).find('link').text(),
+          source: 'Reuters',
+          category: 'Global Business',
+          publishedAt: $(elem).find('pubDate').text(),
+          imageUrl: null
+        });
+      }
     });
     
     return articles;
@@ -163,16 +215,21 @@ async function fetchCNBCNews() {
     const $ = cheerio.load(response.data, { xmlMode: true });
     const articles = [];
     
-    $('item').slice(0, 8).each((_, elem) => {
-      articles.push({
-        title: $(elem).find('title').text(),
-        description: $(elem).find('description').text().replace(/<[^>]*>/g, '').slice(0, 200),
-        url: $(elem).find('link').text(),
-        source: 'CNBC',
-        category: 'US Business',
-        publishedAt: $(elem).find('pubDate').text(),
-        imageUrl: null
-      });
+    $('item').slice(0, 10).each((_, elem) => {
+      const title = $(elem).find('title').text();
+      const description = $(elem).find('description').text().replace(/<[^>]*>/g, '');
+      
+      if (isFinancialContent(title, description)) {
+        articles.push({
+          title: title,
+          description: description.slice(0, 200),
+          url: $(elem).find('link').text(),
+          source: 'CNBC',
+          category: 'US Markets',
+          publishedAt: $(elem).find('pubDate').text(),
+          imageUrl: null
+        });
+      }
     });
     
     return articles;
