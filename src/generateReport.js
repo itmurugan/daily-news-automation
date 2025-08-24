@@ -6,14 +6,39 @@ export function generateHTMLReport(newsData) {
   const date = format(new Date(fetchedAt), 'EEEE, MMMM d, yyyy');
   const time = format(new Date(fetchedAt), 'h:mm a');
   
-  // Group articles by category
-  const categorizedNews = {};
+  // Group articles by market region
+  const marketRegions = {
+    'US Markets': [],
+    'Hong Kong Markets': [],
+    'India Markets': [],
+    'Singapore Markets': []
+  };
+  
   articles.forEach(article => {
-    const category = article.category || 'General';
-    if (!categorizedNews[category]) {
-      categorizedNews[category] = [];
+    // Map categories to our four target markets
+    if (article.category === 'US Markets' || article.category === 'US Business' || 
+        article.source === 'MarketWatch' || article.source === 'Yahoo Finance' || 
+        article.source === 'CNBC') {
+      marketRegions['US Markets'].push(article);
+    } else if (article.category === 'Hong Kong Markets' || article.source === 'SCMP Business') {
+      marketRegions['Hong Kong Markets'].push(article);
+    } else if (article.category === 'India Markets' || article.source === 'Economic Times') {
+      marketRegions['India Markets'].push(article);
+    } else if (article.category === 'Singapore Markets' || article.source === 'Business Times SG') {
+      marketRegions['Singapore Markets'].push(article);
+    } else if (article.category === 'Global Markets' || article.category === 'Global Business' || 
+               article.source === 'Bloomberg' || article.source === 'Reuters Business') {
+      // Distribute global news across relevant markets
+      if (article.title.toLowerCase().includes('asia') || article.title.toLowerCase().includes('hong kong')) {
+        marketRegions['Hong Kong Markets'].push(article);
+      } else if (article.title.toLowerCase().includes('india')) {
+        marketRegions['India Markets'].push(article);
+      } else if (article.title.toLowerCase().includes('singapore')) {
+        marketRegions['Singapore Markets'].push(article);
+      } else {
+        marketRegions['US Markets'].push(article);
+      }
     }
-    categorizedNews[category].push(article);
   });
 
   const html = `<!DOCTYPE html>
@@ -268,8 +293,8 @@ export function generateHTMLReport(newsData) {
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">📰 DAILY NEWS DIGEST</div>
-            <div class="tagline">Your Professional News Briefing</div>
+            <div class="logo">📈 DAILY MARKET BRIEFING</div>
+            <div class="tagline">Stock Markets • Company News • Economic Events</div>
             <div class="date-time">${date} • ${time}</div>
         </div>
         
@@ -282,8 +307,8 @@ export function generateHTMLReport(newsData) {
                         <div class="stat-label">Total Articles</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">${Object.keys(categorizedNews).length}</div>
-                        <div class="stat-label">Categories</div>
+                        <div class="stat-number">${Object.keys(marketRegions).filter(k => marketRegions[k].length > 0).length}</div>
+                        <div class="stat-label">Markets</div>
                     </div>
                     <div class="stat">
                         <div class="stat-number">${[...new Set(articles.map(a => a.source))].length}</div>
@@ -292,20 +317,22 @@ export function generateHTMLReport(newsData) {
                 </div>
             </div>
             
-            ${Object.entries(categorizedNews).map(([category, categoryArticles]) => `
+            ${Object.entries(marketRegions).map(([region, regionArticles]) => {
+                if (regionArticles.length === 0) return '';
+                return `
                 <div class="category-section">
                     <div class="category-header">
-                        <div class="category-title">${getCategoryEmoji(category)} ${category}</div>
-                        <div class="category-count">${categoryArticles.length} articles</div>
+                        <div class="category-title">${getMarketEmoji(region)} ${region}</div>
+                        <div class="category-count">${regionArticles.length} articles</div>
                     </div>
                     
-                    ${categoryArticles.slice(0, 5).map(article => `
+                    ${regionArticles.slice(0, 5).map(article => `
                         <div class="article">
                             <div class="article-header">
                                 <a href="${article.url}" target="_blank" class="article-title">${article.title}</a>
                                 <span class="article-source">${article.source}</span>
                             </div>
-                            ${article.description ? `<div class="article-description">${article.description.slice(0, 200)}...</div>` : ''}
+                            ${article.description ? `<div class="article-description">${formatDescription(article.description, article.title)}</div>` : ''}
                             <div class="article-meta">
                                 <span class="article-time">${formatTime(article.publishedAt)}</span>
                                 <a href="${article.url}" target="_blank" class="read-more">Read full article →</a>
@@ -313,7 +340,8 @@ export function generateHTMLReport(newsData) {
                         </div>
                     `).join('')}
                 </div>
-            `).join('')}
+            `;
+            }).join('')}
         </div>
         
         <div class="footer">
@@ -328,24 +356,42 @@ export function generateHTMLReport(newsData) {
   return html;
 }
 
-function getCategoryEmoji(category) {
+function getMarketEmoji(market) {
   const emojis = {
     'US Markets': '🇺🇸',
-    'US Business': '🏢',
-    'Global Markets': '🌐',
-    'Global Business': '💼',
-    'Singapore Markets': '🇸🇬', 
-    'India Markets': '🇮🇳',
     'Hong Kong Markets': '🇭🇰',
-    'Asia Markets': '🌏',
-    'Technology': '💻',
-    'Business': '💼',
-    'Markets': '📈',
-    'Economy': '💰',
-    'General': '📄',
-    'News': '📰'
+    'India Markets': '🇮🇳',
+    'Singapore Markets': '🇸🇬'
   };
-  return emojis[category] || '📈';
+  return emojis[market] || '📈';
+}
+
+function getCategoryEmoji(category) {
+  return getMarketEmoji(category);
+}
+
+function formatDescription(description, title) {
+  // Extract key financial information and format for investor relevance
+  let formattedDesc = description.slice(0, 200);
+  
+  // Add investment context if not present
+  const hasFinancialContext = /stock|share|market|percent|%|gain|loss|rise|fell|surge|drop|trading|investor|acquisition|merger|earnings|revenue|profit/i.test(formattedDesc);
+  
+  if (!hasFinancialContext) {
+    // Try to infer market impact
+    if (/announce|launch|release|introduce/i.test(title)) {
+      formattedDesc += ' Market impact pending.';
+    } else if (/partner|deal|agreement/i.test(title)) {
+      formattedDesc += ' Deal expected to affect market position.';
+    }
+  }
+  
+  // Ensure description ends properly
+  if (!formattedDesc.endsWith('.')) {
+    formattedDesc += '...';
+  }
+  
+  return formattedDesc;
 }
 
 function formatTime(dateString) {
