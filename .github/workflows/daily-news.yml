@@ -1,4 +1,4 @@
-name: Daily News Automation
+name: Daily News & Portfolio Automation
 
 on:
   schedule:
@@ -11,9 +11,18 @@ on:
         required: false
         default: 'false'
         type: boolean
+      newsletter_type:
+        description: 'Which newsletter to run'
+        required: false
+        default: 'both'
+        type: choice
+        options:
+          - both
+          - daily-only
+          - portfolio-only
 
 jobs:
-  fetch-and-send-news:
+  fetch-and-send-newsletters:
     runs-on: ubuntu-latest
     
     steps:
@@ -29,7 +38,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
-    - name: Run Daily News Automation
+    - name: Run Newsletter Automation
       env:
         EMAIL_SERVICE: gmail
         EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
@@ -42,24 +51,41 @@ jobs:
         # Fallback: Basic Auth
         EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
         TEST_RUN: ${{ github.event.inputs.test_run || 'false' }}
+        SEND_EMAILS: 'true'
       run: |
-        echo "Starting Daily News Automation..."
+        NEWSLETTER_TYPE="${{ github.event.inputs.newsletter_type || 'both' }}"
+        echo "Starting Newsletter Automation (Type: $NEWSLETTER_TYPE)..."
+        
         if [ "$TEST_RUN" = "true" ]; then
-          echo "Running in test mode - no email will be sent"
+          echo "Running in test mode - no emails will be sent"
         fi
-        npm run daily-news
+        
+        case "$NEWSLETTER_TYPE" in
+          "daily-only")
+            echo "📈 Running Daily Market Briefing only..."
+            npm run daily-news
+            ;;
+          "portfolio-only")
+            echo "📊 Running Portfolio News only..."
+            npm run portfolio-news
+            ;;
+          "both"|*)
+            echo "📈📊 Running both Daily Market Briefing and Portfolio News..."
+            npm run all-news
+            ;;
+        esac
         
     - name: Upload report artifact
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: daily-news-report-${{ github.run_number }}
+        name: newsletter-reports-${{ github.run_number }}
         path: reports/
         retention-days: 30
         
     - name: Notify on failure
       if: failure()
       run: |
-        echo "Daily News Automation failed at $(date)"
+        echo "Newsletter Automation failed at $(date)"
         echo "Check the logs for more details"
         exit 1
