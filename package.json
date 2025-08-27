@@ -10,6 +10,8 @@
     "generate-report": "node src/generateReport.js",
     "send-email": "node src/sendEmail.js",
     "daily-news": "node src/dailyNews.js",
+    "portfolio-news": "node src/portfolioNews.js",
+    "all-news": "node src/runAllNews.js",
     "test": "node src/testRun.js"
   },
   "author": "",

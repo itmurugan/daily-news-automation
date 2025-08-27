@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const config = {
+  sendEmails: process.env.SEND_EMAILS !== 'false', // Enable emails by default unless explicitly disabled
   email: {
     service: process.env.EMAIL_SERVICE || 'gmail',
     from: process.env.EMAIL_FROM || 'your-email@gmail.com',

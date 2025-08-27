@@ -1,6 +1,7 @@
 import { fetchNewsFromSources } from './fetchNews.js';
 import { generateHTMLReport } from './generateReport.js';
 import { sendEmailReportOAuth } from './sendEmailOAuth.js';
+import { config } from './config.js';
 import fs from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -48,14 +49,17 @@ export async function runDailyNewsAutomation() {
     await fs.writeFile(reportPath, htmlReport);
     console.log(`✅ Report saved locally: ${reportPath}`);
     
-    // Step 3: Send email (skip if TEST_RUN=true)
+    // Step 3: Send email (skip if TEST_RUN=true or emails disabled)
     let emailResult = { success: false };
     if (process.env.TEST_RUN === 'true') {
       console.log('\n🧪 TEST MODE: Skipping email send');
-      console.log('📧 In production, this would email the report to: itmurugan@gmail.com');
+      console.log(`📧 In production, this would email the report to: ${config.email.to}`);
       emailResult = { success: 'skipped' };
+    } else if (!config.sendEmails) {
+      console.log('\nℹ️  Email sending is disabled in config');
+      emailResult = { success: 'disabled' };
     } else {
-      console.log('\n📧 Sending email to itmurugan@gmail.com...');
+      console.log(`\n📧 Sending Daily Market Briefing email to ${config.email.to}...`);
       emailResult = await sendEmailReportOAuth(htmlReport);
       
       if (emailResult.success) {
@@ -82,6 +86,9 @@ export async function runDailyNewsAutomation() {
     throw error;
   }
 }
+
+// Export the function
+export { runDailyNewsAutomation as runDailyNews };
 
 // Run if called directly
 if (import.meta.url === `file://${process.argv[1]}`) {
