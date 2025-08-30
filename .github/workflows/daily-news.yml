@@ -1,4 +1,4 @@
-name: Daily News & Portfolio Automation
+name: Financial News Automation (3 Newsletters)
 
 on:
   schedule:
@@ -12,14 +12,18 @@ on:
         default: 'false'
         type: boolean
       newsletter_type:
-        description: 'Which newsletter to run'
+        description: 'Which newsletter(s) to run'
         required: false
-        default: 'both'
+        default: 'all'
         type: choice
         options:
-          - both
+          - all
           - daily-only
           - portfolio-only
+          - watchlist-only
+          - daily-portfolio
+          - daily-watchlist
+          - portfolio-watchlist
 
 jobs:
   fetch-and-send-newsletters:
@@ -53,7 +57,7 @@ jobs:
         TEST_RUN: ${{ github.event.inputs.test_run || 'false' }}
         SEND_EMAILS: 'true'
       run: |
-        NEWSLETTER_TYPE="${{ github.event.inputs.newsletter_type || 'both' }}"
+        NEWSLETTER_TYPE="${{ github.event.inputs.newsletter_type || 'all' }}"
         echo "Starting Newsletter Automation (Type: $NEWSLETTER_TYPE)..."
         
         if [ "$TEST_RUN" = "true" ]; then
@@ -69,8 +73,27 @@ jobs:
             echo "📊 Running Portfolio News only..."
             npm run portfolio-news
             ;;
-          "both"|*)
-            echo "📈📊 Running both Daily Market Briefing and Portfolio News..."
+          "watchlist-only")
+            echo "📈 Running Watchlist News only..."
+            npm run watchlist-news
+            ;;
+          "daily-portfolio")
+            echo "📈📊 Running Daily Market Briefing and Portfolio News..."
+            npm run daily-news
+            npm run portfolio-news
+            ;;
+          "daily-watchlist")
+            echo "📈📈 Running Daily Market Briefing and Watchlist News..."
+            npm run daily-news
+            npm run watchlist-news
+            ;;
+          "portfolio-watchlist")
+            echo "📊📈 Running Portfolio News and Watchlist News..."
+            npm run portfolio-news
+            npm run watchlist-news
+            ;;
+          "all"|*)
+            echo "📈📊📈 Running all three newsletters..."
             npm run all-news
             ;;
         esac
