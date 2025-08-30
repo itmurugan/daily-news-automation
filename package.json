@@ -11,6 +11,7 @@
     "send-email": "node src/sendEmail.js",
     "daily-news": "node src/dailyNews.js",
     "portfolio-news": "node src/portfolioNews.js",
+    "watchlist-news": "node src/watchlistNews.js",
     "all-news": "node src/runAllNews.js",
     "test": "node src/testRun.js"
   },

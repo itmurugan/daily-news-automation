@@ -1,0 +1,60 @@
+{
+  "articles": [],
+  "watchlistStocks": "Alibaba, PDD Holdings, Baidu, NIO, XPeng, Li Auto, Apple, Amazon, NVIDIA, Microsoft, Alphabet Class A, Meta Platforms, Tesla, Taiwan Semiconductor, ASML Holding, Advanced Micro Devices, Intel, Qualcomm, Broadcom, Micron Technology, Palantir, Eli Lilly, Novo Nordisk, Johnson & Johnson, Pfizer, AbbVie, Merck, UnitedHealth, JPMorgan Chase, Bank of America, Wells Fargo, Goldman Sachs, Morgan Stanley, Visa, Mastercard, Berkshire Hathaway B, Exxon Mobil, Chevron, ConocoPhillips, Schlumberger, Walmart, Home Depot, Costco, Target, Nike, McDonald's, Starbucks, Coca-Cola, PepsiCo, Disney, Netflix, Comcast, Prologis, American Tower, Simon Property Group, Realty Income, Coinbase, MicroStrategy, Block (Square), PayPal, Boeing, Caterpillar, UPS, FedEx, Uber, Lyft, AT&T, Verizon, T-Mobile",
+  "totalStocks": 69,
+  "activeStocks": 0,
+  "watchingOnly": 69,
+  "errors": [
+    {
+      "source": "NewsAPI",
+      "error": {
+        "message": "Request failed with status code 401",
+        "name": "AxiosError",
+        "stack": "AxiosError: Request failed with status code 401\n    at settle (file:///Users/itmurugan/daily-news-automation/node_modules/axios/lib/core/settle.js:19:12)\n    at IncomingMessage.handleStreamEnd (file:///Users/itmurugan/daily-news-automation/node_modules/axios/lib/adapters/http.js:599:11)\n    at IncomingMessage.emit (node:events:530:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\n    at Axios.request (file:///Users/itmurugan/daily-news-automation/node_modules/axios/lib/core/Axios.js:45:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async fetchFromNewsAPI (file:///Users/itmurugan/daily-news-automation/src/fetchWatchlistNews.js:38:24)\n    at async Promise.all (index 0)\n    at async fetchWatchlistNews (file:///Users/itmurugan/daily-news-automation/src/fetchWatchlistNews.js:213:3)\n    at async runWatchlistNews (file:///Users/itmurugan/daily-news-automation/src/watchlistNews.js:17:22)",
+        "config": {
+          "transitional": {
+            "silentJSONParsing": true,
+            "forcedJSONParsing": true,
+            "clarifyTimeoutError": false
+          },
+          "adapter": [
+            "xhr",
+            "http",
+            "fetch"
+          ],
+          "transformRequest": [
+            null
+          ],
+          "transformResponse": [
+            null
+          ],
+          "timeout": 0,
+          "xsrfCookieName": "XSRF-TOKEN",
+          "xsrfHeaderName": "X-XSRF-TOKEN",
+          "maxContentLength": -1,
+          "maxBodyLength": -1,
+          "env": {},
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "axios/1.11.0",
+            "Accept-Encoding": "gzip, compress, deflate, br"
+          },
+          "params": {
+            "q": "Alibaba OR BABA OR PDD Holdings OR PDD OR Baidu OR BIDU OR NIO OR XPeng OR XPEV OR Li Auto",
+            "from": "2025-08-27",
+            "to": "2025-08-30",
+            "sortBy": "publishedAt",
+            "language": "en",
+            "pageSize": 100
+          },
+          "method": "get",
+          "url": "https://newsapi.org/v2/everything",
+          "allowAbsoluteUrls": true
+        },
+        "code": "ERR_BAD_REQUEST",
+        "status": 401
+      }
+    }
+  ],
+  "fetchedAt": "2025-08-30T04:08:55.124Z"
+}

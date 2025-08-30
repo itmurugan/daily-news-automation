@@ -1,5 +1,6 @@
 import { runDailyNews } from './dailyNews.js';
 import { runPortfolioNews } from './portfolioNews.js';
+import { runWatchlistNews } from './watchlistNews.js';
 
 async function runAllNews() {
   console.log('🚀 Starting Combined News Report Generation...\n');
@@ -7,7 +8,8 @@ async function runAllNews() {
   
   const results = {
     dailyNews: null,
-    portfolioNews: null
+    portfolioNews: null,
+    watchlistNews: null
   };
   
   try {
@@ -28,6 +30,16 @@ async function runAllNews() {
     console.log('\n✅ Portfolio News Report completed');
     console.log('-'.repeat(60));
     
+    // Add a small delay between reports
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Run watchlist news
+    console.log('\n📈 PART 3: Watchlist News Report\n');
+    console.log('-'.repeat(60));
+    results.watchlistNews = await runWatchlistNews();
+    console.log('\n✅ Watchlist News Report completed');
+    console.log('-'.repeat(60));
+    
     // Summary
     console.log('\n');
     console.log('=' .repeat(60));
@@ -36,6 +48,7 @@ async function runAllNews() {
     console.log('\n📋 Summary:');
     console.log('  • Daily Market Briefing: Generated');
     console.log('  • Portfolio News Report: Generated');
+    console.log('  • Watchlist News Report: Generated');
     
     const isTestMode = process.env.TEST_RUN === 'true';
     if (isTestMode) {
@@ -43,10 +56,12 @@ async function runAllNews() {
     } else {
       const dailyEmailStatus = results.dailyNews?.emailSent || 'unknown';
       const portfolioEmailStatus = results.portfolioNews?.emailSent || 'unknown';
+      const watchlistEmailStatus = results.watchlistNews?.emailSent || 'unknown';
       
       console.log('\n📧 Email Status:');
       console.log(`  • Daily Market Briefing: ${dailyEmailStatus === true ? 'Sent' : dailyEmailStatus}`);
       console.log(`  • Portfolio News Report: ${portfolioEmailStatus === true ? 'Sent' : portfolioEmailStatus}`);
+      console.log(`  • Watchlist News Report: ${watchlistEmailStatus === true ? 'Sent' : watchlistEmailStatus}`);
     }
     
     return results;
