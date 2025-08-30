@@ -133,7 +133,76 @@ export const watchlist = [
   { ticker: 'NTNX', name: 'Nutanix', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
   { ticker: 'WORK', name: 'Slack', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
   { ticker: 'BOX', name: 'Box', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
-  { ticker: 'DBX', name: 'Dropbox', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' }
+  { ticker: 'DBX', name: 'Dropbox', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  
+  // Additional High-Growth & Popular Stocks
+  { ticker: 'ARKK', name: 'ARK Innovation ETF', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'ARKW', name: 'ARK Next Generation Internet ETF', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'QQQ', name: 'Invesco QQQ Trust', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'SPY', name: 'SPDR S&P 500 ETF', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'VTI', name: 'Vanguard Total Stock Market ETF', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'IWM', name: 'iShares Russell 2000 ETF', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  
+  // Biotech & Healthcare
+  { ticker: 'GILD', name: 'Gilead Sciences', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'BIIB', name: 'Biogen', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'AMGN', name: 'Amgen', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'REGN', name: 'Regeneron Pharmaceuticals', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'VRTX', name: 'Vertex Pharmaceuticals', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'ILMN', name: 'Illumina', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'MRNA', name: 'Moderna', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'BNTX', name: 'BioNTech', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  
+  // Fintech & Payments
+  { ticker: 'AFRM', name: 'Affirm', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'UPST', name: 'Upstart', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'SOFI', name: 'SoFi Technologies', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'LC', name: 'LendingClub', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'HOOD', name: 'Robinhood', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'NU', name: 'Nu Holdings', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  
+  // Electric Vehicles & Clean Energy
+  { ticker: 'RIVN', name: 'Rivian', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'LCID', name: 'Lucid Motors', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'F', name: 'Ford', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'GM', name: 'General Motors', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'ENPH', name: 'Enphase Energy', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'SEDG', name: 'SolarEdge Technologies', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'NEE', name: 'NextEra Energy', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  
+  // Gaming & Esports
+  { ticker: 'ATVI', name: 'Activision Blizzard', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'EA', name: 'Electronic Arts', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'TTWO', name: 'Take-Two Interactive', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  
+  // Social Media & Communications
+  { ticker: 'SNAP', name: 'Snap Inc', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'PINS', name: 'Pinterest', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'TWTR', name: 'Twitter', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'MTCH', name: 'Match Group', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'BMBL', name: 'Bumble', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  
+  // E-commerce & Retail
+  { ticker: 'ETSY', name: 'Etsy', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'EBAY', name: 'eBay', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  
+  // Travel & Hospitality
+  { ticker: 'ABNB', name: 'Airbnb', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'BKNG', name: 'Booking Holdings', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'EXPE', name: 'Expedia', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'DAL', name: 'Delta Air Lines', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'AAL', name: 'American Airlines', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'UAL', name: 'United Airlines', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'LUV', name: 'Southwest Airlines', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  
+  // Food Delivery & Gig Economy
+  { ticker: 'DASH', name: 'DoorDash', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  { ticker: 'GRUB', name: 'Grubhub', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' },
+  
+  // Streaming & Content
+  { ticker: 'PARA', name: 'Paramount Global', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'WBD', name: 'Warner Bros Discovery', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NASDAQ' },
+  { ticker: 'FUBO', name: 'fuboTV', shares: 0, avgPrice: null, currency: 'USD', exchange: 'NYSE' }
 ];
 
 export function getWatchlistSearchTerms() {
@@ -159,18 +228,23 @@ export function getWatchlistByCategory() {
     'Chinese Tech & E-commerce': ['BABA', 'PDD', 'BIDU', 'NIO', 'XPEV', 'LI'],
     'US Big Tech': ['AAPL', 'AMZN', 'NVDA', 'MSFT', 'GOOGL', 'META', 'TSLA'],
     'Semiconductors & AI': ['TSM', 'ASML', 'AMD', 'INTC', 'QCOM', 'AVGO', 'MU', 'PLTR'],
-    'Healthcare & Pharma': ['LLY', 'NVO', 'JNJ', 'PFE', 'ABBV', 'MRK', 'UNH', 'VEEV'],
-    'Financial Services': ['JPM', 'BAC', 'WFC', 'GS', 'MS', 'V', 'MA', 'BRK.B', 'INTU'],
-    'Energy & Commodities': ['XOM', 'CVX', 'COP', 'SLB'],
-    'Consumer & Retail': ['WMT', 'HD', 'COST', 'TGT', 'NKE', 'MCD', 'SBUX', 'KO', 'PEP'],
-    'Entertainment & Media': ['DIS', 'NFLX', 'CMCSA', 'SPOT', 'ROKU', 'RBLX', 'UNITY'],
+    'Healthcare & Pharma': ['LLY', 'NVO', 'JNJ', 'PFE', 'ABBV', 'MRK', 'UNH', 'VEEV', 'GILD', 'BIIB', 'AMGN', 'REGN', 'VRTX', 'ILMN', 'MRNA', 'BNTX'],
+    'Financial Services': ['JPM', 'BAC', 'WFC', 'GS', 'MS', 'V', 'MA', 'BRK.B', 'INTU', 'AFRM', 'UPST', 'SOFI', 'LC', 'HOOD', 'NU'],
+    'Energy & Commodities': ['XOM', 'CVX', 'COP', 'SLB', 'ENPH', 'SEDG', 'NEE'],
+    'Consumer & Retail': ['WMT', 'HD', 'COST', 'TGT', 'NKE', 'MCD', 'SBUX', 'KO', 'PEP', 'ETSY', 'EBAY'],
+    'Entertainment & Media': ['DIS', 'NFLX', 'CMCSA', 'SPOT', 'ROKU', 'RBLX', 'UNITY', 'PARA', 'WBD', 'FUBO'],
     'Real Estate & REITs': ['PLD', 'AMT', 'SPG', 'O'],
     'Crypto & Digital Assets': ['COIN', 'MSTR', 'SQ', 'PYPL'],
-    'Industrial & Transportation': ['BA', 'CAT', 'UPS', 'FDX', 'UBER', 'LYFT'],
+    'Industrial & Transportation': ['BA', 'CAT', 'UPS', 'FDX', 'UBER', 'LYFT', 'F', 'GM', 'RIVN', 'LCID', 'DAL', 'AAL', 'UAL', 'LUV'],
     'Telecom & Communications': ['T', 'VZ', 'TMUS', 'CSCO'],
     'Software & SaaS': ['SHOP', 'CRM', 'ADBE', 'NOW', 'SNOW', 'ZM', 'DOCU', 'TWLO', 'ZEN', 'WDAY', 'TEAM', 'SPLK', 'ORCL', 'IBM', 'VMW', 'HPQ', 'NTNX', 'WORK', 'BOX', 'DBX'],
     'Cybersecurity': ['CRWD', 'ZS', 'OKTA', 'PANW', 'FTNT', 'CHKP', 'CYBR', 'S'],
-    'Cloud & Data': ['NET', 'DDOG', 'MDB', 'ESTC', 'GTLB', 'FROG']
+    'Cloud & Data': ['NET', 'DDOG', 'MDB', 'ESTC', 'GTLB', 'FROG'],
+    'Gaming & Esports': ['ATVI', 'EA', 'TTWO'],
+    'Social Media': ['SNAP', 'PINS', 'TWTR', 'MTCH', 'BMBL'],
+    'Travel & Hospitality': ['ABNB', 'BKNG', 'EXPE'],
+    'Food Delivery & Gig Economy': ['DASH', 'GRUB'],
+    'ETFs & Index Funds': ['ARKK', 'ARKW', 'QQQ', 'SPY', 'VTI', 'IWM']
   };
   
   const result = {};

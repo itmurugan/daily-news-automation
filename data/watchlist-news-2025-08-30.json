@@ -1,9 +1,9 @@
 {
   "articles": [],
-  "watchlistStocks": "Alibaba, PDD Holdings, Baidu, NIO, XPeng, Li Auto, Apple, Amazon, NVIDIA, Microsoft, Alphabet Class A, Meta Platforms, Tesla, Taiwan Semiconductor, ASML Holding, Advanced Micro Devices, Intel, Qualcomm, Broadcom, Micron Technology, Palantir, Eli Lilly, Novo Nordisk, Johnson & Johnson, Pfizer, AbbVie, Merck, UnitedHealth, JPMorgan Chase, Bank of America, Wells Fargo, Goldman Sachs, Morgan Stanley, Visa, Mastercard, Berkshire Hathaway B, Exxon Mobil, Chevron, ConocoPhillips, Schlumberger, Walmart, Home Depot, Costco, Target, Nike, McDonald's, Starbucks, Coca-Cola, PepsiCo, Disney, Netflix, Comcast, Prologis, American Tower, Simon Property Group, Realty Income, Coinbase, MicroStrategy, Block (Square), PayPal, Boeing, Caterpillar, UPS, FedEx, Uber, Lyft, AT&T, Verizon, T-Mobile, Shopify, Salesforce, Adobe, ServiceNow, Snowflake, CrowdStrike, Zscaler, Okta, Cloudflare, Datadog, MongoDB, Zoom, DocuSign, Twilio, Spotify, Roku, Roblox, Unity Software, Zendesk, Workday, Atlassian, Splunk, Palo Alto Networks, Fortinet, Check Point Software, CyberArk, SentinelOne, Elastic, GitLab, JFrog, Veeva Systems, Intuit, Oracle, IBM, VMware, HP Inc, Cisco, Nutanix, Slack, Box, Dropbox",
-  "totalStocks": 110,
+  "watchlistStocks": "Alibaba, PDD Holdings, Baidu, NIO, XPeng, Li Auto, Apple, Amazon, NVIDIA, Microsoft, Alphabet Class A, Meta Platforms, Tesla, Taiwan Semiconductor, ASML Holding, Advanced Micro Devices, Intel, Qualcomm, Broadcom, Micron Technology, Palantir, Eli Lilly, Novo Nordisk, Johnson & Johnson, Pfizer, AbbVie, Merck, UnitedHealth, JPMorgan Chase, Bank of America, Wells Fargo, Goldman Sachs, Morgan Stanley, Visa, Mastercard, Berkshire Hathaway B, Exxon Mobil, Chevron, ConocoPhillips, Schlumberger, Walmart, Home Depot, Costco, Target, Nike, McDonald's, Starbucks, Coca-Cola, PepsiCo, Disney, Netflix, Comcast, Prologis, American Tower, Simon Property Group, Realty Income, Coinbase, MicroStrategy, Block (Square), PayPal, Boeing, Caterpillar, UPS, FedEx, Uber, Lyft, AT&T, Verizon, T-Mobile, Shopify, Salesforce, Adobe, ServiceNow, Snowflake, CrowdStrike, Zscaler, Okta, Cloudflare, Datadog, MongoDB, Zoom, DocuSign, Twilio, Spotify, Roku, Roblox, Unity Software, Zendesk, Workday, Atlassian, Splunk, Palo Alto Networks, Fortinet, Check Point Software, CyberArk, SentinelOne, Elastic, GitLab, JFrog, Veeva Systems, Intuit, Oracle, IBM, VMware, HP Inc, Cisco, Nutanix, Slack, Box, Dropbox, ARK Innovation ETF, ARK Next Generation Internet ETF, Invesco QQQ Trust, SPDR S&P 500 ETF, Vanguard Total Stock Market ETF, iShares Russell 2000 ETF, Gilead Sciences, Biogen, Amgen, Regeneron Pharmaceuticals, Vertex Pharmaceuticals, Illumina, Moderna, BioNTech, Affirm, Upstart, SoFi Technologies, LendingClub, Robinhood, Nu Holdings, Rivian, Lucid Motors, Ford, General Motors, Enphase Energy, SolarEdge Technologies, NextEra Energy, Activision Blizzard, Electronic Arts, Take-Two Interactive, Snap Inc, Pinterest, Twitter, Match Group, Bumble, Etsy, eBay, Airbnb, Booking Holdings, Expedia, Delta Air Lines, American Airlines, United Airlines, Southwest Airlines, DoorDash, Grubhub, Paramount Global, Warner Bros Discovery, fuboTV",
+  "totalStocks": 159,
   "activeStocks": 0,
-  "watchingOnly": 110,
+  "watchingOnly": 159,
   "errors": [
     {
       "source": "NewsAPI",
@@ -56,5 +56,5 @@
       }
     }
   ],
-  "fetchedAt": "2025-08-30T04:13:33.837Z"
+  "fetchedAt": "2025-08-30T04:16:03.947Z"
 }
