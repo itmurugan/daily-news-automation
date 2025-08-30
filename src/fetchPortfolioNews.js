@@ -91,12 +91,21 @@ export async function fetchPortfolioNews() {
     new Map(allNews.map(item => [item.title, item])).values()
   );
   
+  // Filter articles to only include those from the last 2 days
+  const twoDaysAgo = new Date();
+  twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+  
+  const recentUniqueNews = uniqueNews.filter(article => {
+    const articleDate = new Date(article.publishedAt);
+    return articleDate >= twoDaysAgo;
+  });
+  
   // Sort by date (most recent first)
-  uniqueNews.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  recentUniqueNews.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
   
   // Limit to top 100 relevant stories
   return {
-    articles: uniqueNews.slice(0, 100),
+    articles: recentUniqueNews.slice(0, 100),
     fetchedAt: new Date().toISOString(),
     portfolioStocks: portfolio.length,
     errors
