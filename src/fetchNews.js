@@ -60,12 +60,21 @@ export async function fetchNewsFromSources() {
     }
   });
 
+  // Filter articles to only include those from the last 2 days
+  const twoDaysAgo = new Date();
+  twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+  
+  const recentArticles = allNews.filter(article => {
+    const articleDate = new Date(article.publishedAt);
+    return articleDate >= twoDaysAgo;
+  });
+
   // Sort by date (most recent first)
-  allNews.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  recentArticles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
   
   // Limit to top 60 business stories
   return {
-    articles: allNews.slice(0, 60),
+    articles: recentArticles.slice(0, 60),
     fetchedAt: new Date().toISOString(),
     errors
   };
